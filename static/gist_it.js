@@ -31,8 +31,8 @@ define([
     var update_params = function() {
         var config = Jupyter.notebook.config;
         for (var key in params) {
-            if (config.data.hasOwnProperty(key))
-                params[key] = config.data[key];
+            if (config.data.hasOwnProperty(key)) params[key] = config.data[key];
+            else config.update({[key]: params[key]});
         }
         default_metadata.data.public = Boolean(config.data.gist_it_default_to_public);
     };
