@@ -15,7 +15,7 @@ long_description = open('README.md', encoding="utf8").read()
 
 setuptools.setup(
     name = 'nbclassic-gist-it',
-    version = '0.0.1',
+    version = '0.0.2',
     description = 'Gist it',
     keywords = 'notebook',
     author = 'Nbextensions team',
