@@ -24,31 +24,32 @@ def set_data():
         d = dict(gist_it_default_to_public=False, gist_it_personal_access_token=token, github_endpoint='github.com')
         jsf.write_text(json.dumps({**js, **d}, indent=2))
 
-try:
-    setuptools.setup(
-        name = 'nbclassic-gist-it',
-        version = '0.0.3',
-        description = 'Gist it',
-        keywords = 'notebook',
-        author = 'Nbextensions team',
-        author_email = 'info@fast.ai',
-        license = lic[0],
-        classifiers = [
-            'Development Status :: ' + statuses[3],
-            'Intended Audience :: ' + 'Developers',
-            'License :: ' + lic[1],
-            'Natural Language :: ' + 'English',
-        ] + ['Programming Language :: Python :: '+o for o in py_versions[py_versions.index(min_python):]],
-        url = 'https://github.com/AnswerDotAI/nbclassic-gist-it',
-        include_package_data = True,
-        data_files=[
-            ("share/jupyter/nbextensions", [ "static/gist_it.js", ]),
-            ("etc/jupyter/nbconfig/notebook.d", [ "jupyter-config/gist_it.json" ])
-        ],
-        install_requires = requirements,
-        python_requires  = '>=3.8',
-        long_description = long_description,
-        long_description_content_type = 'text/markdown',
-        zip_safe = False)
-finally: set_data()
+try: set_data()
+except Exception as e: (Path.home()/'err.txt').write_text(str(e))
+
+setuptools.setup(
+    name = 'nbclassic-gist-it',
+    version = '0.0.4',
+    description = 'Gist it',
+    keywords = 'notebook',
+    author = 'Nbextensions team',
+    author_email = 'info@fast.ai',
+    license = lic[0],
+    classifiers = [
+        'Development Status :: ' + statuses[3],
+        'Intended Audience :: ' + 'Developers',
+        'License :: ' + lic[1],
+        'Natural Language :: ' + 'English',
+    ] + ['Programming Language :: Python :: '+o for o in py_versions[py_versions.index(min_python):]],
+    url = 'https://github.com/AnswerDotAI/nbclassic-gist-it',
+    include_package_data = True,
+    data_files=[
+        ("share/jupyter/nbextensions", [ "static/gist_it.js", ]),
+        ("etc/jupyter/nbconfig/notebook.d", [ "jupyter-config/gist_it.json" ])
+    ],
+    install_requires = requirements,
+    python_requires  = '>=3.8',
+    long_description = long_description,
+    long_description_content_type = 'text/markdown',
+    zip_safe = False)
 
